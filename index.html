@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functional add system</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    
+</head>
+<body id="bg">
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="form-field">
+                <form action="" class="d-flex" id="mainForm">
+                    <div class="form-group m-2">
+                        <input type="text" class="form-control" id="InputField" placeholder="Enter Your Value" required>
+                    </div>
+                    <div class="form-group m-2">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ListWrapp">
+                <ul id="list"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let mainForm = document.querySelector('#mainForm')
+    let InputField = document.querySelector('#InputField')
+    let ListWrapp = document.querySelector('.ListWrapp')
+    let list = document.querySelector('#list')
+
+// function eventListener
+eventListener()
+function eventListener(){
+    mainForm.addEventListener('submit', AddTask)
+}
+
+function AddTask(e){
+    let li = document.createElement('li')
+    li.className = 'list-group-item'
+    let span = document.createElement('span')
+    span.appendChild(document.createTextNode(InputField.value))
+    li.appendChild(span)
+    list.appendChild(li)
+
+    // DeleteBtn
+    let DeleteBtn = document.createElement('a')
+    DeleteBtn.className = 'close'
+    DeleteBtn.style.float = 'right'
+    DeleteBtn.style.cursor = 'pointer'
+    DeleteBtn.innerText = 'x'
+    DeleteBtn.addEventListener('click', function(){
+        list.removeChild(li)
+    })
+    li.appendChild(DeleteBtn)
+
+
+    InputField.value = ''
+    e.preventDefault()
+}
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
